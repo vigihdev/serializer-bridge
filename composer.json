@@ -1,0 +1,52 @@
+{
+    "name": "vigihdev/serializer-bridge",
+    "description": "A serializer bridge for integrating with Symfony components.",
+    "homepage": "https://github.com/vigihdev/serializer-bridge",
+    "keywords": [
+        "dto",
+        "serializer",
+        "bridge",
+        "php",
+        "contract",
+        "performance"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Vigih Dev",
+            "email": "vigihdev@gmail.com",
+            "role": "developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Vigihdev\\Serializer\\": "src/Serializer/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vigihdev\\Serializer\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "process-timeout": 0
+    },
+    "require": {
+        "php": "^8.1",
+        "symfony/serializer": "^6.4",
+        "symfony/property-access": "^6.4",
+        "symfony/filesystem": "^6.4",
+        "symfony/dotenv": "^6.4",
+        "phpdocumentor/reflection-docblock": "^5.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "10.5.x-dev"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "dev": "php -S localhost:1392 local-dev/index.php"
+    }
+}
