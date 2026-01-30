@@ -8,8 +8,6 @@ interface SerializerExceptionInterface extends \Throwable
 {
     public function getContext(): array;
 
-    public function getSolutions(): array;
-
     public function toArray(): array;
 
     public function getFormattedMessage(): string;

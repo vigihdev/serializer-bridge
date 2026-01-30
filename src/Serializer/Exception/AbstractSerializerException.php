@@ -14,32 +14,19 @@ abstract class AbstractSerializerException extends Exception implements Serializ
      */
     protected array $context = [];
 
-    /**
-     * Suggested solutions
-     */
-    protected array $solutions = [];
-
     public function __construct(
         string $message,
         int $code = 0,
         ?\Throwable $previous = null,
-        array $context = [],
-        array $solutions = []
+        array $context = []
     ) {
         $this->context = $context;
-        $this->solutions = $solutions;
-
         parent::__construct($message, $code, $previous);
     }
 
     public function getContext(): array
     {
         return $this->context;
-    }
-
-    public function getSolutions(): array
-    {
-        return $this->solutions;
     }
 
     public function getFormattedMessage(): string
@@ -62,7 +49,6 @@ abstract class AbstractSerializerException extends Exception implements Serializ
             'message' => $this->getMessage(),
             'code' => $this->getCode(),
             'context' => $this->context,
-            'solutions' => $this->solutions,
             'exception' => static::class,
         ];
     }
