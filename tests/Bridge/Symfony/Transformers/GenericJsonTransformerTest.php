@@ -10,6 +10,7 @@ use Vigihdev\Serializer\Exception\SerializerException;
 use Vigihdev\Serializer\Tests\TestCase;
 use Vigihdev\Serializer\Tests\TestDto;
 use Vigihdev\Serializer\Tests\TestDtoWithSerializedName;
+use Vigihdev\Serializer\Tests\TestPostWithTagsDto;
 
 final class GenericJsonTransformerTest extends TestCase
 {
@@ -195,5 +196,22 @@ final class GenericJsonTransformerTest extends TestCase
 
         // Clean up
         unlink($filepath);
+    }
+
+    #[Test]
+    public function can_transform_json_array_with_doc_block_tags(): void
+    {
+        $json = '{"title": "Belajar Library Bridge", "tags": ["php", "serializer", "symfony"]}';
+        $transformer = new GenericJsonTransformer(TestPostWithTagsDto::class);
+
+        $result = $transformer->transformJson($json);
+
+        $this->assertInstanceOf(TestPostWithTagsDto::class, $result);
+        $this->assertEquals("Belajar Library Bridge", $result->getTitle());
+
+        $this->assertIsArray($result->getTags());
+        $this->assertCount(3, $result->getTags());
+        $this->assertEquals("php", $result->getTags()[0]);
+        $this->assertEquals("serializer", $result->getTags()[1]);
     }
 }
